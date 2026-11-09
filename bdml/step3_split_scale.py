@@ -8,7 +8,7 @@ X = df.drop(columns=["y"]).to_numpy()
 y = df["y"].to_numpy()
 
 X_tr, X_te, y_tr, y_te = train_test_split(
-    X, y, test_size=0.2, random_state=42)          # 8:2 划分, 固定种子可复现
+    X, y, test_size=0.2, random_state=482)          # 8:2 划分, 固定种子可复现
 
 scaler = StandardScaler().fit(X_tr)                # 仅用训练集拟合, 避免信息泄露
 X_tr_s = scaler.transform(X_tr)

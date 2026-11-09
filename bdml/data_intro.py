@@ -8,7 +8,7 @@ print("加州房价 shape:", cal.data.shape, "目标列:", cal.target.name)
 print(cal.data.head())
 
 # 来源 2: 合成大数据（本地生成, 无需下载, 体现百万行量级）
-rng = np.random.default_rng(42)
+rng = np.random.default_rng(482)
 n = 1_000_000                    # 100 万行
 X = rng.standard_normal((n, 5))
 true_w = np.array([3.0, -2.0, 1.5, 0.5, -1.0])

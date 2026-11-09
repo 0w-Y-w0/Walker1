@@ -9,7 +9,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 df = pd.read_parquet("bigdata_reg.parquet")
 X = df.drop(columns=["y"]).to_numpy(); y = df["y"].to_numpy()
-X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=482)
 scaler = StandardScaler().fit(X_tr)
 X_tr_s, X_te_s = scaler.transform(X_tr), scaler.transform(X_te)
 

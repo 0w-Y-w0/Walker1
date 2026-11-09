@@ -17,7 +17,7 @@ plt.rcParams["axes.unicode_minus"] = False
 # ---------- 数据准备（与训练时完全一致的划分与标准化） ----------
 df = pd.read_parquet("bigdata_reg.parquet")
 X = df.drop(columns=["y"]).to_numpy(); y = df["y"].to_numpy()
-X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=482)
 scaler = StandardScaler().fit(X_tr)
 X_te_s = scaler.transform(X_te)
 
@@ -53,7 +53,7 @@ r2 = r2_score(yte.numpy(), y_pred)
 print(f"MLP 测试结果 -> MSE={mse:.3f}  MAE={mae:.3f}  R2={r2:.4f}")
 
 # 抽 2000 个点画预测 vs 真实散点
-idx = np.random.default_rng(6).choice(len(y_pred), 2000, replace=False)
+idx = np.random.default_rng(482).choice(len(y_pred), 2000, replace=False)
 plt.figure(figsize=(5, 5))
 plt.scatter(yte.numpy()[idx], y_pred[idx], s=6, alpha=0.4)
 lim = [min(yte.numpy().min(), y_pred.min()), max(yte.numpy().max(), y_pred.max())]

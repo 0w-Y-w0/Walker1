@@ -10,7 +10,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # ---------- 数据与模型（合并 step6/step7 代码，避免跨文件导入问题） ----------
 df = pd.read_parquet("bigdata_reg.parquet")
 X = df.drop(columns=["y"]).to_numpy(); y = df["y"].to_numpy()
-X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=482)
 scaler = StandardScaler().fit(X_tr)
 Xte = torch.tensor(scaler.transform(X_te), dtype=torch.float32)
 
@@ -32,7 +32,7 @@ with torch.no_grad():
     p_hat = model(Xte).numpy().ravel()
 
 # 模拟一批房源的"市场挂牌价"（这里用测试集真实价加随机扰动代替）
-rng = np.random.default_rng(7)
+rng = np.random.default_rng(482)
 p_list = (Xte[:, 0].numpy()) * 0.0 + rng.uniform(1.0, 5.0, size=len(Xte))
 
 # 规则: 预测价相对挂牌价低估 >15% 买入, 高估 >15% 卖出/不买, 否则观望

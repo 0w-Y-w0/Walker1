@@ -1,7 +1,7 @@
 # step1_generate.py — 向量化生成百万行回归数据（避免 Python 循环）
 import numpy as np, pandas as pd, time
 
-rng = np.random.default_rng(0)
+rng = np.random.default_rng(482)
 n, d = 1_000_000, 8
 
 t0 = time.time()
