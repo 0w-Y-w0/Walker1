@@ -1,23 +1,23 @@
-# verify_env.py
-# 用途: 一次性验证所有核心库版本是否达标
-import sys, importlib
+# 用途: 验证实验所需库是否安装成功并打印版本，避免后续 ImportError。
+# 关键参数: 无。
+# 预期输出: 依次打印各库版本号，且无报错；torch 会打印 CPU/CUDA 后端信息。
+import sys, platform
+import numpy as np
+import pandas as pd
+import matplotlib, seaborn, torch
+import sklearn
+try:
+    import imblearn
+    imb_ver = imblearn.__version__
+except Exception as e:
+    imb_ver = f"未安装: {e}"
 
-required = {
-    "numpy": "1.24", "pandas": "2.0", "sklearn": "1.3",
-    "matplotlib": "3.7", "scipy": "1.10", "torch": "2.0",
-}
-
-def ver(name):
-    try:
-        m = importlib.import_module(name)
-        return getattr(m, "__version__", "unknown")
-    except Exception as e:
-        return f"MISSING ({e})"
-
-print(f"Python {sys.version.split()[0]}")
-for pkg, low in required.items():
-    v = ver(pkg)
-    print(f"  {pkg:12s} installed={v:12s} required>={low}")
-
-import torch
-print("torch CUDA available:", torch.cuda.is_available())
+print("Python         :", sys.version.split()[0])
+print("Platform       :", platform.platform())
+print("numpy          :", np.__version__)
+print("pandas         :", pd.__version__)
+print("scikit-learn   :", sklearn.__version__)
+print("matplotlib     :", matplotlib.__version__)
+print("seaborn        :", seaborn.__version__)
+print("torch          :", torch.__version__, "| CUDA 可用:", torch.cuda.is_available())
+print("imbalanced-learn:", imb_ver)
