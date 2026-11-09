@@ -19,11 +19,11 @@ plt.figure(figsize=(7, 5))
 normal = df[df.label == 0]
 fraud = df[df.label == 1]
 
-plt.scatter(normal["f0"], normal["f1"], s=8, alpha=0.25, label="正常(0)",
+plt.scatter(normal["f1"], normal["f2"], s=8, alpha=0.25, label="正常(0)",
             color="#41776a")
-plt.scatter(fraud["f0"], fraud["f1"], s=18, alpha=0.85, label="欺诈(1)",
+plt.scatter(fraud["f1"], fraud["f2"], s=18, alpha=0.85, label="欺诈(1)",
             color="#d66276")
-plt.xlabel("f0"); plt.ylabel("f1")
+plt.xlabel("f1"); plt.ylabel("f2")
 plt.title("合成信用卡交易: 正常 vs 欺诈 (极度不平衡)")
 plt.legend()
 plt.tight_layout(); plt.savefig("fig_imbalance.png", dpi=120)
