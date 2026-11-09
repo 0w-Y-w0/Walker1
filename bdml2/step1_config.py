@@ -28,9 +28,9 @@ RANDOM_STATE = 482
 np.random.seed(RANDOM_STATE)
 torch.manual_seed(RANDOM_STATE)
 
+sns.set_theme(style="whitegrid")     # 必须在设置字体之前——它会重置 rcParams！
 plt.rcParams["figure.dpi"] = 110
 plt.rcParams["axes.unicode_minus"] = False
 # Windows 下用黑体显示中文; macOS 可用 'Arial Unicode MS', Linux 可用 'WenQuanYi Micro Hei'
 plt.rcParams["font.sans-serif"] = ["SimHei", "Arial Unicode MS", "DejaVu Sans"]
-sns.set_theme(style="whitegrid")
 print("环境配置完成。")
