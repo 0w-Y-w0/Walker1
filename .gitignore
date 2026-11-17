@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 bdml/*.parquet
 bdml/bigdata_reg.csv
+venv06/
