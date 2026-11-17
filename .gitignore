@@ -9,3 +9,4 @@ venv06/
 llm06/qwen05-lora-ticket/checkpoint-*/
 llm06/qwen05-lora-ticket/checkpoint-*/
 llm06/server.log
+llm06/server.log
