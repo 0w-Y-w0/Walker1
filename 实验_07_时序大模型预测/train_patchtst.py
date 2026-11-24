@@ -25,6 +25,7 @@ model = PatchTST(n_vars=2, patch_len=16, stride=8, d_model=128,
 criterion = nn.MSELoss()
 optimizer = AdamW(model.parameters(), lr=1e-3)
 best_val = float("inf")
+history = {"train": [], "val": []}          # 步骤8: 记录每轮损失供可视化
 os.makedirs("checkpoints", exist_ok=True)
 
 for epoch in range(1, 21):
@@ -47,9 +48,16 @@ for epoch in range(1, 21):
             xb, yb = xb.to(device), yb.to(device)
             val_loss += criterion(model(xb), yb).item() * xb.size(0)
     val_loss /= len(val_ds)
+    history["train"].append(train_loss)
+    history["val"].append(val_loss)
     print(f"Epoch {epoch:02d} | train MSE {train_loss:.4f} | val MSE {val_loss:.4f}")
 
     if val_loss < best_val:
         best_val = val_loss
         torch.save(model.state_dict(), "checkpoints/patchtst_best.pt")
         print("  -> 保存最优模型")
+
+# 持久化训练历史(步骤8 可视化用)
+import json  # noqa: E402
+with open("checkpoints/history.json", "w", encoding="utf-8") as f:
+    json.dump(history, f)
