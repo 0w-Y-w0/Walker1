@@ -38,4 +38,5 @@ def decide(ticket_text):
                              temperature=1.0)
         return tokenizer.decode(out[0], skip_special_tokens=True)
 
-print(decide("用户投诉: 空调买回来一周就不制冷，要求退货。"))
+if __name__ == "__main__":   # 直接运行时自检; 被 decision_pipeline 导入时不执行
+    print(decide("用户投诉: 刚买的空调能退款吗？用了 2 天坏了。"))
