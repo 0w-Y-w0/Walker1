@@ -15,6 +15,8 @@ import json
 import matplotlib
 matplotlib.use("Agg")          # 无 GUI 环境直接出图
 import matplotlib.pyplot as plt
+plt.rcParams["font.sans-serif"] = ["SimHei", "Microsoft YaHei"]  # 中文支持
+plt.rcParams["axes.unicode_minus"] = False
 
 with open("checkpoints/history.json", encoding="utf-8") as f:
     history = json.load(f)
